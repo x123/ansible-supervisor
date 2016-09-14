@@ -1,5 +1,22 @@
 # handlers file for supervisor
 ---
+- name: force-stop supervisor
+  command: service supervisor force-stop
+  ignore_errors: True
+
+- name: wait 3 seconds
+  command: sleep 3
+
+- name: stop supervisor
+  service:
+    name: supervisor
+    state: stopped
+
+- name: start supervisor
+  service:
+    name: supervisor
+    state: started
+
 - name: restart supervisor
   service:
     name: supervisor
