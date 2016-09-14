@@ -35,7 +35,11 @@
     owner: "{{ supervisor_system_user }}"
     group: "{{ supervisor_system_group }}"
     mode: 0640
-  notify: restart supervisor
+  notify:
+    - force-stop supervisor
+    - wait 3 seconds
+    - stop supervisor
+    - start supervisor
   tags:
     - supervisor-configure-configuration
     - supervisor-configure-configuration-supervisord-conf
@@ -47,7 +51,11 @@
     owner: "{{ supervisor_system_user }}"
     group: "{{ supervisor_system_group }}"
     mode: 0755
-  notify: restart supervisor
+  notify:
+    - force-stop supervisor
+    - wait 3 seconds
+    - stop supervisor
+    - start supervisor
   tags:
     - supervisor-configure-configuration
     - supervisor-configure-configuration-init
